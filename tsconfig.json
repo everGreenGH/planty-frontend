@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@ethads/contract": ["./contract/typechain-types/index.ts"],
+      "@planty/contract": ["./contract/typechain-types/index.ts"],
       "~/public/*": ["./public/*"],
       "~/*": ["./src/*"]
     }
