@@ -1,13 +1,8 @@
-import { Address, parseEther } from "viem";
+import { parseEther } from "viem";
 import { useWritePlantyPoolBuyAssetDuringPublicSale, useWritePlantyPoolSellAssetDuringPublicSale } from "~/generated";
-import { PLANTY_POOL_ADDRESS } from "~/utils/constants";
-import { NetworkType } from "~/utils/network";
 import { useTransactionAwait } from "./useTransactionAwait";
 
 export const usePublicSaleTrade = () => {
-  const network = process.env.NEXT_PUBLIC_NETWORK_NAME as NetworkType;
-  const poolAddress = PLANTY_POOL_ADDRESS[network] as Address;
-
   const {
     data: buyTxHash,
     writeContractAsync: buyAssetDuringPublicSale,
@@ -21,12 +16,12 @@ export const usePublicSaleTrade = () => {
 
   const buyPublicSale = async (rawPlantyTokenAmount: number) => {
     const amount = parseEther(rawPlantyTokenAmount.toString());
-    await buyAssetDuringPublicSale({ args: [amount], address: poolAddress });
+    await buyAssetDuringPublicSale({ args: [amount] });
   };
 
   const sellPublicSale = async (rawPlantyTokenAmount: number) => {
     const amount = parseEther(rawPlantyTokenAmount.toString());
-    await sellAssetDuringPublicSale({ args: [amount], address: poolAddress });
+    await sellAssetDuringPublicSale({ args: [amount] });
   };
 
   const { isLoading: isBuyConfirmLoading, isSuccess: isBuySuccess } = useTransactionAwait(buyTxHash, "Buy Public Sale");

@@ -18,7 +18,7 @@ import { usePublicSaleTrade } from "~/hooks/usePublicSaleTrade";
 import { useTrade } from "~/hooks/useTrade";
 import { USDC_ADDRESS } from "~/utils/constants";
 import { formatBigInt } from "~/utils/formatter";
-import { setLocalStorage } from "~/utils/local-storage";
+import { getLocalStorage, setLocalStorage } from "~/utils/local-storage";
 import { NetworkType } from "~/utils/network";
 import { useReadErc20BalanceOf } from "../../../../../generated";
 
@@ -51,7 +51,7 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
 
   /* Read Info */
   const { data: balance, isLoading: balanceLoading } = useReadErc20BalanceOf({
-    address: USDC_ADDRESS[network] as Address,
+    address: USDC_ADDRESS as Address,
     args: [account as Address],
   });
   const { data: buyInfo, isLoading: buyInfoLoading } = useReadPlantyPoolGetBuyInfo({
@@ -65,7 +65,7 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
   const formattedTradeFee = tradeFee ? formatBigInt(tradeFee) : "0.0000";
 
   const fetchedNeedAllowance = useNeedApprove(
-    isBuy ? USDC_ADDRESS[network] : plantyTokenAddress,
+    isBuy ? USDC_ADDRESS : plantyTokenAddress,
     plantyPoolAddress,
     isBuy ? Number(usdcNeeded ?? 0) / 1e18 : Number(amount ?? 0) / 1e18,
   );
@@ -85,20 +85,12 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
   }, [isApproveSuccess]);
 
   const { buyPublicSale, sellPublicSale, isBuyPublicLoading, isSellPublicLoading } = usePublicSaleTrade();
-  const { buy, sell, isBuyLoading, isSellLoading, isBuySuccess, isSellSuccess } = useTrade();
-
-  // record chart data
-  useEffect(() => {
-    if (isBuySuccess || isSellSuccess) {
-      const timestamp = dayjs().unix();
-      setLocalStorage("price", JSON.stringify({ spotPrice, timestamp }));
-    }
-  }, [isBuySuccess, isSellSuccess]);
+  const { buy, sell, isBuyLoading, isSellLoading } = useTrade();
 
   const onValid = async () => {
     if (needApprove) {
       await approve(
-        isBuy ? USDC_ADDRESS[network] : plantyTokenAddress,
+        isBuy ? USDC_ADDRESS : plantyTokenAddress,
         plantyPoolAddress,
         isBuy ? Number(usdcNeeded) / 1e18 : Number(amount) / 1e18,
       );

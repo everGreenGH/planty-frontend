@@ -1,13 +1,12 @@
 import clsx from "clsx";
-import { CrosshairMode, createChart } from "lightweight-charts";
+import { CrosshairMode, Time, createChart } from "lightweight-charts";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { UIProps } from "~/components/UIProps";
-import { formatBigInt } from "~/utils/formatter";
 import { getLocalStorage } from "~/utils/local-storage";
 
 export interface PriceData {
-  spotPrice: string;
-  timestamp: string;
+  spotPrice: number;
+  timestamp: Time;
 }
 
 export const PriceChart = ({ className }: UIProps.Div) => {
@@ -111,7 +110,7 @@ export const PriceChart = ({ className }: UIProps.Div) => {
       lineColor: "#15A900",
     });
 
-    const areaData = chartDatas.map((chartData) => ({ time: chartData.timestamp, value: chartData.spotPrice }));
+    const areaData = chartDatas.map((chartData) => ({ time: chartData.timestamp, value: Number(chartData.spotPrice) }));
     areaSeries.setData(areaData);
     setSeries(areaSeries);
 
@@ -151,17 +150,16 @@ export const PriceChart = ({ className }: UIProps.Div) => {
   return (
     <div className={clsx("relative flex w-full flex-col gap-5 rounded-3xl bg-gray-50 py-6 pl-6", className)}>
       {/* Chart Header */}
-      <div className="absolute top-6 z-10 flex w-full items-start justify-between pr-6">
+      <div className="absolute top-4 z-10 flex w-full items-start justify-between pr-6">
         {/* Price */}
         <div className="flex flex-col items-start gap-2">
-          <span className="text-18/heading/s text-gray-950">Price</span>
           <div className="flex items-center gap-4">
-            <span className="text-24/heading/l text-gray-950">$(pointedPrice)</span>
+            <span className="text-16/medium-bold text-gray-950">Price: ${pointedPrice}</span>
           </div>
         </div>
       </div>
       {/* Chart Container */}
-      <div className="flex min-h-[360px] items-center justify-center" ref={chartContainerRef}></div>
+      <div className="flex min-h-[280px] items-center justify-center" ref={chartContainerRef}></div>
     </div>
   );
 };

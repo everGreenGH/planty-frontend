@@ -1,13 +1,19 @@
 import clsx from "clsx";
 import dayjs from "dayjs";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Button } from "~/components/atoms/Button/Button";
 import { useReadPlantyPoolPublicSaleEndTime, useReadPlantyPoolSpotPrice, useReadPlantyTokenName } from "~/generated";
+import PengtoshiProfile from "~/public/pengtoshi_test_profile.png";
+import PlantImage from "~/public/plant.png";
+import TokenTable from "~/public/token_table.svg";
 import { formatBigInt, formatLeftTimestamp } from "~/utils/formatter";
+import { getLocalStorage, setLocalStorage } from "~/utils/local-storage";
 import { OrderForm } from "./OrderForm/OrderForm";
+import { PriceChart } from "./PriceChart/PriceChart";
 
 export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; tokenAddress: string }) => {
-  const [tab, setTab] = useState<"chart" | "plantInfo">("plantInfo");
+  const [tab, setTab] = useState<"chart" | "plantInfo">("chart");
 
   const { data: tokenName } = useReadPlantyTokenName();
   const { data: publicSaleEndTime } = useReadPlantyPoolPublicSaleEndTime();
@@ -22,6 +28,23 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
       setLeftTime(Number(publicSaleEndTime) - dayjs().unix());
     }
   }, [publicSaleEndTime]);
+
+  useEffect(() => {
+    if (spotPrice) {
+      const timestamp = dayjs().unix();
+      const spotPriceNumber = Number(rawSpotPrice) / 1e18;
+
+      if (typeof spotPriceNumber === "number") {
+        const rawPriceDatas = getLocalStorage("price");
+        const priceDatas: { spotPrice: number; timestamp: number }[] = rawPriceDatas ? JSON.parse(rawPriceDatas) : [];
+        const lastTimestamp = priceDatas[priceDatas.length - 1]?.timestamp;
+        if (!lastTimestamp || timestamp - lastTimestamp > 10) {
+          priceDatas.push({ spotPrice: spotPriceNumber, timestamp });
+          setLocalStorage("price", JSON.stringify(priceDatas));
+        }
+      }
+    }
+  }, [spotPrice]);
 
   return (
     <div className="flex w-full flex-col items-start gap-3 p-6">
@@ -76,16 +99,51 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
         {tab === "chart" && (
           <div className="col-span-3 flex flex-col gap-4 rounded-3xl bg-theme-white p-6">
             <span className="text-16/medium-bold text-black">Chart</span>
+            <PriceChart />
           </div>
         )}
         {/* Plant Info */}
         {tab === "plantInfo" && (
           <div className="col-span-3 flex flex-col gap-4 rounded-3xl bg-theme-white p-6">
             <span className="text-16/medium-bold text-black">Plant Info</span>
+            <div className="flex items-start gap-10">
+              <Image src={PlantImage} alt="plant" width={240} className="rounded-3xl" />
+              <div className="flex w-full flex-col gap-4">
+                <div className="flex justify-between gap-2">
+                  <span className="text-14/medium text-gray-500">Plant Manager</span>
+                  <div className="flex items-center gap-2">
+                    <Image src={PengtoshiProfile} alt="pengtoshi" width={20} height={20} className="rounded-full" />
+                    <span className="text-14/large text-black">Pengtoshi</span>
+                  </div>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span className="text-14/medium text-gray-500">TVL</span>
+                  <span className="text-14/large text-black">
+                    ${rawSpotPrice ? (Number(rawSpotPrice) / 1e18) * 1000000 : 0}
+                  </span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span className="text-14/medium text-gray-500">Temperature</span>
+                  <span className="text-14/large text-black">20°C</span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span className="text-14/medium text-gray-500">Humidity</span>
+                  <span className="text-14/large text-black">33%</span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span className="text-14/medium text-gray-500">Report Started</span>
+                  <span className="text-14/large text-black">2024.10.11 05:11</span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span className="text-14/medium text-gray-500">Last Update</span>
+                  <span className="text-14/large text-black">2024.11.17 04:24</span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
         {/* Order */}
-        <div className="col-span-2 flex w-full flex-col gap-3 rounded-3xl bg-theme-white p-6">
+        <div className="col-span-2 flex h-fit w-full flex-col gap-3 rounded-3xl bg-theme-white p-6">
           <span className="text-16/medium-bold text-black">Order</span>
           <OrderForm
             isPublicSaleActive={!!isPublicSaleActive}
@@ -95,6 +153,8 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
           />
         </div>
       </div>
+      {/* List */}
+      <TokenTable className="mt-6" />
     </div>
   );
 };

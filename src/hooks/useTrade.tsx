@@ -1,15 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Address, parseEther } from "viem";
+import { parseEther } from "viem";
 import { useWritePlantyPoolBuyAsset, useWritePlantyPoolSellAsset } from "~/generated";
-import { PLANTY_POOL_ADDRESS } from "~/utils/constants";
-import { NetworkType } from "~/utils/network";
 import { useTransactionAwait } from "./useTransactionAwait";
 
 export const useTrade = () => {
   const router = useRouter();
-  const network = process.env.NEXT_PUBLIC_NETWORK_NAME as NetworkType;
-  const poolAddress = PLANTY_POOL_ADDRESS[network] as Address;
   const {
     data: buyTxHash,
     writeContractAsync: buyAsset,
@@ -23,12 +19,12 @@ export const useTrade = () => {
 
   const buy = async (rawPlantyTokenAmount: number) => {
     const amount = parseEther(rawPlantyTokenAmount.toString());
-    await buyAsset({ args: [amount], address: poolAddress });
+    await buyAsset({ args: [amount] });
   };
 
   const sell = async (rawPlantyTokenAmount: number) => {
     const amount = parseEther(rawPlantyTokenAmount.toString());
-    await sellAsset({ args: [amount], address: poolAddress });
+    await sellAsset({ args: [amount] });
   };
 
   const { isLoading: isBuyConfirmLoading, isSuccess: isBuySuccess } = useTransactionAwait(buyTxHash, "Buy Token");
