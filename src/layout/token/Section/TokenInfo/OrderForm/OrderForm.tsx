@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import dayjs from "dayjs";
 import { ChevronDown } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -17,6 +18,7 @@ import { usePublicSaleTrade } from "~/hooks/usePublicSaleTrade";
 import { useTrade } from "~/hooks/useTrade";
 import { USDC_ADDRESS } from "~/utils/constants";
 import { formatBigInt } from "~/utils/formatter";
+import { setLocalStorage } from "~/utils/local-storage";
 import { NetworkType } from "~/utils/network";
 import { useReadErc20BalanceOf } from "../../../../../generated";
 
@@ -28,9 +30,10 @@ export interface OrderFormProps {
   plantyTokenAddress: string;
   plantyPoolAddress: string;
   isPublicSaleActive: boolean;
+  spotPrice: string;
 }
 
-export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleActive }: OrderFormProps) => {
+export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleActive, spotPrice }: OrderFormProps) => {
   const [isBuy, setIsBuy] = useState(true);
   const { approve, isLoading: isApproveLoading, isSuccess: isApproveSuccess } = useApprove();
   const { address: account } = useAccount();
@@ -82,7 +85,15 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
   }, [isApproveSuccess]);
 
   const { buyPublicSale, sellPublicSale, isBuyPublicLoading, isSellPublicLoading } = usePublicSaleTrade();
-  const { buy, sell, isBuyLoading, isSellLoading } = useTrade();
+  const { buy, sell, isBuyLoading, isSellLoading, isBuySuccess, isSellSuccess } = useTrade();
+
+  // record chart data
+  useEffect(() => {
+    if (isBuySuccess || isSellSuccess) {
+      const timestamp = dayjs().unix();
+      setLocalStorage("price", JSON.stringify({ spotPrice, timestamp }));
+    }
+  }, [isBuySuccess, isSellSuccess]);
 
   const onValid = async () => {
     if (needApprove) {

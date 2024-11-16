@@ -2,18 +2,14 @@ import clsx from "clsx";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { Button } from "~/components/atoms/Button/Button";
-import {
-  useReadPlantyPoolIsPublicSaleActive,
-  useReadPlantyPoolPublicSaleEndTime,
-  useReadPlantyPoolSpotPrice,
-} from "~/generated";
+import { useReadPlantyPoolPublicSaleEndTime, useReadPlantyPoolSpotPrice, useReadPlantyTokenName } from "~/generated";
 import { formatBigInt, formatLeftTimestamp } from "~/utils/formatter";
 import { OrderForm } from "./OrderForm/OrderForm";
 
 export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; tokenAddress: string }) => {
-  const tokenName = "PLANT";
   const [tab, setTab] = useState<"chart" | "plantInfo">("plantInfo");
 
+  const { data: tokenName } = useReadPlantyTokenName();
   const { data: publicSaleEndTime } = useReadPlantyPoolPublicSaleEndTime();
   const isPublicSaleActive = publicSaleEndTime && Number(publicSaleEndTime) > dayjs().unix();
   const { data: rawSpotPrice } = useReadPlantyPoolSpotPrice();
@@ -95,6 +91,7 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
             isPublicSaleActive={!!isPublicSaleActive}
             plantyTokenAddress={tokenAddress}
             plantyPoolAddress={poolAddress}
+            spotPrice={spotPrice ?? "0.00"}
           />
         </div>
       </div>

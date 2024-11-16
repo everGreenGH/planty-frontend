@@ -288,14 +288,6 @@ export const plantyFactoryAbi = [
   },
 ] as const
 
-export const plantyFactoryAddress =
-  '0xB4507601BbEaEA019Db64f31028329F24844F921' as const
-
-export const plantyFactoryConfig = {
-  address: plantyFactoryAddress,
-  abi: plantyFactoryAbi,
-} as const
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PlantyPool
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -646,14 +638,6 @@ export const plantyPoolAbi = [
   },
 ] as const
 
-export const plantyPoolAddress =
-  '0x8a17fe5FEdDD013A542E6C1364278fe277347Fbd' as const
-
-export const plantyPoolConfig = {
-  address: plantyPoolAddress,
-  abi: plantyPoolAbi,
-} as const
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PlantyToken
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -809,14 +793,6 @@ export const plantyTokenAbi = [
   },
 ] as const
 
-export const plantyTokenAddress =
-  '0x5B7188dCE6c8f41B2712D37003B9Fd7E658180F7' as const
-
-export const plantyTokenConfig = {
-  address: plantyTokenAddress,
-  abi: plantyTokenAbi,
-} as const
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Action
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -962,7 +938,6 @@ export const watchErc20TransferEvent = /*#__PURE__*/ createWatchContractEvent({
  */
 export const readPlantyFactory = /*#__PURE__*/ createReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
 })
 
 /**
@@ -970,7 +945,6 @@ export const readPlantyFactory = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyFactoryAdmin = /*#__PURE__*/ createReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
   functionName: 'admin',
 })
 
@@ -979,7 +953,6 @@ export const readPlantyFactoryAdmin = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyFactoryGetAllPools = /*#__PURE__*/ createReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
   functionName: 'getAllPools',
 })
 
@@ -989,7 +962,6 @@ export const readPlantyFactoryGetAllPools = /*#__PURE__*/ createReadContract({
 export const readPlantyFactoryGetAllPoolsInfo =
   /*#__PURE__*/ createReadContract({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     functionName: 'getAllPoolsInfo',
   })
 
@@ -998,7 +970,6 @@ export const readPlantyFactoryGetAllPoolsInfo =
  */
 export const readPlantyFactoryGetPoolInfo = /*#__PURE__*/ createReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
   functionName: 'getPoolInfo',
 })
 
@@ -1007,7 +978,6 @@ export const readPlantyFactoryGetPoolInfo = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyFactoryPools = /*#__PURE__*/ createReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
   functionName: 'pools',
 })
 
@@ -1016,7 +986,6 @@ export const readPlantyFactoryPools = /*#__PURE__*/ createReadContract({
  */
 export const writePlantyFactory = /*#__PURE__*/ createWriteContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
 })
 
 /**
@@ -1024,7 +993,6 @@ export const writePlantyFactory = /*#__PURE__*/ createWriteContract({
  */
 export const writePlantyFactoryCreatePool = /*#__PURE__*/ createWriteContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
   functionName: 'createPool',
 })
 
@@ -1033,7 +1001,6 @@ export const writePlantyFactoryCreatePool = /*#__PURE__*/ createWriteContract({
  */
 export const simulatePlantyFactory = /*#__PURE__*/ createSimulateContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
 })
 
 /**
@@ -1042,7 +1009,6 @@ export const simulatePlantyFactory = /*#__PURE__*/ createSimulateContract({
 export const simulatePlantyFactoryCreatePool =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     functionName: 'createPool',
   })
 
@@ -1051,7 +1017,6 @@ export const simulatePlantyFactoryCreatePool =
  */
 export const watchPlantyFactoryEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
 })
 
 /**
@@ -1060,7 +1025,6 @@ export const watchPlantyFactoryEvent = /*#__PURE__*/ createWatchContractEvent({
 export const watchPlantyFactoryPoolCreatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     eventName: 'PoolCreated',
   })
 
@@ -1069,7 +1033,6 @@ export const watchPlantyFactoryPoolCreatedEvent =
  */
 export const readPlantyPool = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
 })
 
 /**
@@ -1077,7 +1040,6 @@ export const readPlantyPool = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyPoolAssetToken = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'assetToken',
 })
 
@@ -1086,7 +1048,6 @@ export const readPlantyPoolAssetToken = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyPoolDelta = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'delta',
 })
 
@@ -1095,7 +1056,6 @@ export const readPlantyPoolDelta = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyPoolGetBuyInfo = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'getBuyInfo',
 })
 
@@ -1104,7 +1064,6 @@ export const readPlantyPoolGetBuyInfo = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyPoolGetSellInfo = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'getSellInfo',
 })
 
@@ -1114,7 +1073,6 @@ export const readPlantyPoolGetSellInfo = /*#__PURE__*/ createReadContract({
 export const readPlantyPoolIsPublicSaleActive =
   /*#__PURE__*/ createReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'isPublicSaleActive',
   })
 
@@ -1123,7 +1081,6 @@ export const readPlantyPoolIsPublicSaleActive =
  */
 export const readPlantyPoolOwner = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'owner',
 })
 
@@ -1133,7 +1090,6 @@ export const readPlantyPoolOwner = /*#__PURE__*/ createReadContract({
 export const readPlantyPoolProtocolFeeMultiplier =
   /*#__PURE__*/ createReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'protocolFeeMultiplier',
   })
 
@@ -1141,11 +1097,7 @@ export const readPlantyPoolProtocolFeeMultiplier =
  * Wraps __{@link readContract}__ with `abi` set to __{@link plantyPoolAbi}__ and `functionName` set to `"publicSaleEndTime"`
  */
 export const readPlantyPoolPublicSaleEndTime = /*#__PURE__*/ createReadContract(
-  {
-    abi: plantyPoolAbi,
-    address: plantyPoolAddress,
-    functionName: 'publicSaleEndTime',
-  },
+  { abi: plantyPoolAbi, functionName: 'publicSaleEndTime' },
 )
 
 /**
@@ -1153,7 +1105,6 @@ export const readPlantyPoolPublicSaleEndTime = /*#__PURE__*/ createReadContract(
  */
 export const readPlantyPoolPublicSalePrice = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'publicSalePrice',
 })
 
@@ -1162,7 +1113,6 @@ export const readPlantyPoolPublicSalePrice = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyPoolReserveAsset = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'reserveAsset',
 })
 
@@ -1171,7 +1121,6 @@ export const readPlantyPoolReserveAsset = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyPoolReserveUsdc = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'reserveUSDC',
 })
 
@@ -1180,7 +1129,6 @@ export const readPlantyPoolReserveUsdc = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyPoolSpotPrice = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'spotPrice',
 })
 
@@ -1190,7 +1138,6 @@ export const readPlantyPoolSpotPrice = /*#__PURE__*/ createReadContract({
 export const readPlantyPoolTradeFeeMultiplier =
   /*#__PURE__*/ createReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'tradeFeeMultiplier',
   })
 
@@ -1199,7 +1146,6 @@ export const readPlantyPoolTradeFeeMultiplier =
  */
 export const readPlantyPoolUsdcToken = /*#__PURE__*/ createReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'usdcToken',
 })
 
@@ -1208,7 +1154,6 @@ export const readPlantyPoolUsdcToken = /*#__PURE__*/ createReadContract({
  */
 export const writePlantyPool = /*#__PURE__*/ createWriteContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
 })
 
 /**
@@ -1216,7 +1161,6 @@ export const writePlantyPool = /*#__PURE__*/ createWriteContract({
  */
 export const writePlantyPoolAddLiquidity = /*#__PURE__*/ createWriteContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'addLiquidity',
 })
 
@@ -1225,7 +1169,6 @@ export const writePlantyPoolAddLiquidity = /*#__PURE__*/ createWriteContract({
  */
 export const writePlantyPoolBuyAsset = /*#__PURE__*/ createWriteContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'buyAsset',
 })
 
@@ -1235,7 +1178,6 @@ export const writePlantyPoolBuyAsset = /*#__PURE__*/ createWriteContract({
 export const writePlantyPoolBuyAssetDuringPublicSale =
   /*#__PURE__*/ createWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'buyAssetDuringPublicSale',
   })
 
@@ -1245,7 +1187,6 @@ export const writePlantyPoolBuyAssetDuringPublicSale =
 export const writePlantyPoolConfigurePublicSale =
   /*#__PURE__*/ createWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'configurePublicSale',
   })
 
@@ -1255,7 +1196,6 @@ export const writePlantyPoolConfigurePublicSale =
 export const writePlantyPoolRenounceOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -1264,7 +1204,6 @@ export const writePlantyPoolRenounceOwnership =
  */
 export const writePlantyPoolSellAsset = /*#__PURE__*/ createWriteContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'sellAsset',
 })
 
@@ -1274,7 +1213,6 @@ export const writePlantyPoolSellAsset = /*#__PURE__*/ createWriteContract({
 export const writePlantyPoolSellAssetDuringPublicSale =
   /*#__PURE__*/ createWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'sellAssetDuringPublicSale',
   })
 
@@ -1284,7 +1222,6 @@ export const writePlantyPoolSellAssetDuringPublicSale =
 export const writePlantyPoolTransferOwnership =
   /*#__PURE__*/ createWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'transferOwnership',
   })
 
@@ -1293,7 +1230,6 @@ export const writePlantyPoolTransferOwnership =
  */
 export const simulatePlantyPool = /*#__PURE__*/ createSimulateContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
 })
 
 /**
@@ -1302,7 +1238,6 @@ export const simulatePlantyPool = /*#__PURE__*/ createSimulateContract({
 export const simulatePlantyPoolAddLiquidity =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'addLiquidity',
   })
 
@@ -1311,7 +1246,6 @@ export const simulatePlantyPoolAddLiquidity =
  */
 export const simulatePlantyPoolBuyAsset = /*#__PURE__*/ createSimulateContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'buyAsset',
 })
 
@@ -1321,7 +1255,6 @@ export const simulatePlantyPoolBuyAsset = /*#__PURE__*/ createSimulateContract({
 export const simulatePlantyPoolBuyAssetDuringPublicSale =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'buyAssetDuringPublicSale',
   })
 
@@ -1331,7 +1264,6 @@ export const simulatePlantyPoolBuyAssetDuringPublicSale =
 export const simulatePlantyPoolConfigurePublicSale =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'configurePublicSale',
   })
 
@@ -1341,7 +1273,6 @@ export const simulatePlantyPoolConfigurePublicSale =
 export const simulatePlantyPoolRenounceOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -1349,7 +1280,7 @@ export const simulatePlantyPoolRenounceOwnership =
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link plantyPoolAbi}__ and `functionName` set to `"sellAsset"`
  */
 export const simulatePlantyPoolSellAsset = /*#__PURE__*/ createSimulateContract(
-  { abi: plantyPoolAbi, address: plantyPoolAddress, functionName: 'sellAsset' },
+  { abi: plantyPoolAbi, functionName: 'sellAsset' },
 )
 
 /**
@@ -1358,7 +1289,6 @@ export const simulatePlantyPoolSellAsset = /*#__PURE__*/ createSimulateContract(
 export const simulatePlantyPoolSellAssetDuringPublicSale =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'sellAssetDuringPublicSale',
   })
 
@@ -1368,7 +1298,6 @@ export const simulatePlantyPoolSellAssetDuringPublicSale =
 export const simulatePlantyPoolTransferOwnership =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'transferOwnership',
   })
 
@@ -1377,7 +1306,6 @@ export const simulatePlantyPoolTransferOwnership =
  */
 export const watchPlantyPoolEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
 })
 
 /**
@@ -1386,7 +1314,6 @@ export const watchPlantyPoolEvent = /*#__PURE__*/ createWatchContractEvent({
 export const watchPlantyPoolLiquidityAddedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'LiquidityAdded',
   })
 
@@ -1396,7 +1323,6 @@ export const watchPlantyPoolLiquidityAddedEvent =
 export const watchPlantyPoolOwnershipTransferredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'OwnershipTransferred',
   })
 
@@ -1406,7 +1332,6 @@ export const watchPlantyPoolOwnershipTransferredEvent =
 export const watchPlantyPoolPublicSaleConfiguredEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'PublicSaleConfigured',
   })
 
@@ -1416,7 +1341,6 @@ export const watchPlantyPoolPublicSaleConfiguredEvent =
 export const watchPlantyPoolPublicSalePurchaseEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'PublicSalePurchase',
   })
 
@@ -1426,7 +1350,6 @@ export const watchPlantyPoolPublicSalePurchaseEvent =
 export const watchPlantyPoolPublicSaleSellEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'PublicSaleSell',
   })
 
@@ -1436,7 +1359,6 @@ export const watchPlantyPoolPublicSaleSellEvent =
 export const watchPlantyPoolSwappedEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'Swapped',
   })
 
@@ -1445,7 +1367,6 @@ export const watchPlantyPoolSwappedEvent =
  */
 export const readPlantyToken = /*#__PURE__*/ createReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
 })
 
 /**
@@ -1453,7 +1374,6 @@ export const readPlantyToken = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyTokenAllowance = /*#__PURE__*/ createReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'allowance',
 })
 
@@ -1462,7 +1382,6 @@ export const readPlantyTokenAllowance = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyTokenBalanceOf = /*#__PURE__*/ createReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'balanceOf',
 })
 
@@ -1471,7 +1390,6 @@ export const readPlantyTokenBalanceOf = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyTokenDecimals = /*#__PURE__*/ createReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'decimals',
 })
 
@@ -1480,7 +1398,6 @@ export const readPlantyTokenDecimals = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyTokenName = /*#__PURE__*/ createReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'name',
 })
 
@@ -1489,7 +1406,6 @@ export const readPlantyTokenName = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyTokenSymbol = /*#__PURE__*/ createReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'symbol',
 })
 
@@ -1498,7 +1414,6 @@ export const readPlantyTokenSymbol = /*#__PURE__*/ createReadContract({
  */
 export const readPlantyTokenTotalSupply = /*#__PURE__*/ createReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'totalSupply',
 })
 
@@ -1507,7 +1422,6 @@ export const readPlantyTokenTotalSupply = /*#__PURE__*/ createReadContract({
  */
 export const writePlantyToken = /*#__PURE__*/ createWriteContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
 })
 
 /**
@@ -1515,7 +1429,6 @@ export const writePlantyToken = /*#__PURE__*/ createWriteContract({
  */
 export const writePlantyTokenApprove = /*#__PURE__*/ createWriteContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'approve',
 })
 
@@ -1525,7 +1438,6 @@ export const writePlantyTokenApprove = /*#__PURE__*/ createWriteContract({
 export const writePlantyTokenDecreaseAllowance =
   /*#__PURE__*/ createWriteContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -1535,7 +1447,6 @@ export const writePlantyTokenDecreaseAllowance =
 export const writePlantyTokenIncreaseAllowance =
   /*#__PURE__*/ createWriteContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -1544,7 +1455,6 @@ export const writePlantyTokenIncreaseAllowance =
  */
 export const writePlantyTokenTransfer = /*#__PURE__*/ createWriteContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'transfer',
 })
 
@@ -1553,7 +1463,6 @@ export const writePlantyTokenTransfer = /*#__PURE__*/ createWriteContract({
  */
 export const writePlantyTokenTransferFrom = /*#__PURE__*/ createWriteContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'transferFrom',
 })
 
@@ -1562,7 +1471,6 @@ export const writePlantyTokenTransferFrom = /*#__PURE__*/ createWriteContract({
  */
 export const simulatePlantyToken = /*#__PURE__*/ createSimulateContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
 })
 
 /**
@@ -1570,7 +1478,6 @@ export const simulatePlantyToken = /*#__PURE__*/ createSimulateContract({
  */
 export const simulatePlantyTokenApprove = /*#__PURE__*/ createSimulateContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'approve',
 })
 
@@ -1580,7 +1487,6 @@ export const simulatePlantyTokenApprove = /*#__PURE__*/ createSimulateContract({
 export const simulatePlantyTokenDecreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -1590,7 +1496,6 @@ export const simulatePlantyTokenDecreaseAllowance =
 export const simulatePlantyTokenIncreaseAllowance =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -1598,11 +1503,7 @@ export const simulatePlantyTokenIncreaseAllowance =
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link plantyTokenAbi}__ and `functionName` set to `"transfer"`
  */
 export const simulatePlantyTokenTransfer = /*#__PURE__*/ createSimulateContract(
-  {
-    abi: plantyTokenAbi,
-    address: plantyTokenAddress,
-    functionName: 'transfer',
-  },
+  { abi: plantyTokenAbi, functionName: 'transfer' },
 )
 
 /**
@@ -1611,7 +1512,6 @@ export const simulatePlantyTokenTransfer = /*#__PURE__*/ createSimulateContract(
 export const simulatePlantyTokenTransferFrom =
   /*#__PURE__*/ createSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'transferFrom',
   })
 
@@ -1620,7 +1520,6 @@ export const simulatePlantyTokenTransferFrom =
  */
 export const watchPlantyTokenEvent = /*#__PURE__*/ createWatchContractEvent({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
 })
 
 /**
@@ -1629,7 +1528,6 @@ export const watchPlantyTokenEvent = /*#__PURE__*/ createWatchContractEvent({
 export const watchPlantyTokenApprovalEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     eventName: 'Approval',
   })
 
@@ -1639,7 +1537,6 @@ export const watchPlantyTokenApprovalEvent =
 export const watchPlantyTokenTransferEvent =
   /*#__PURE__*/ createWatchContractEvent({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     eventName: 'Transfer',
   })
 
@@ -1794,7 +1691,6 @@ export const useWatchErc20TransferEvent =
  */
 export const useReadPlantyFactory = /*#__PURE__*/ createUseReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
 })
 
 /**
@@ -1802,7 +1698,6 @@ export const useReadPlantyFactory = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyFactoryAdmin = /*#__PURE__*/ createUseReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
   functionName: 'admin',
 })
 
@@ -1812,7 +1707,6 @@ export const useReadPlantyFactoryAdmin = /*#__PURE__*/ createUseReadContract({
 export const useReadPlantyFactoryGetAllPools =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     functionName: 'getAllPools',
   })
 
@@ -1822,7 +1716,6 @@ export const useReadPlantyFactoryGetAllPools =
 export const useReadPlantyFactoryGetAllPoolsInfo =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     functionName: 'getAllPoolsInfo',
   })
 
@@ -1832,7 +1725,6 @@ export const useReadPlantyFactoryGetAllPoolsInfo =
 export const useReadPlantyFactoryGetPoolInfo =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     functionName: 'getPoolInfo',
   })
 
@@ -1841,7 +1733,6 @@ export const useReadPlantyFactoryGetPoolInfo =
  */
 export const useReadPlantyFactoryPools = /*#__PURE__*/ createUseReadContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
   functionName: 'pools',
 })
 
@@ -1850,7 +1741,6 @@ export const useReadPlantyFactoryPools = /*#__PURE__*/ createUseReadContract({
  */
 export const useWritePlantyFactory = /*#__PURE__*/ createUseWriteContract({
   abi: plantyFactoryAbi,
-  address: plantyFactoryAddress,
 })
 
 /**
@@ -1859,7 +1749,6 @@ export const useWritePlantyFactory = /*#__PURE__*/ createUseWriteContract({
 export const useWritePlantyFactoryCreatePool =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     functionName: 'createPool',
   })
 
@@ -1867,7 +1756,7 @@ export const useWritePlantyFactoryCreatePool =
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link plantyFactoryAbi}__
  */
 export const useSimulatePlantyFactory = /*#__PURE__*/ createUseSimulateContract(
-  { abi: plantyFactoryAbi, address: plantyFactoryAddress },
+  { abi: plantyFactoryAbi },
 )
 
 /**
@@ -1876,7 +1765,6 @@ export const useSimulatePlantyFactory = /*#__PURE__*/ createUseSimulateContract(
 export const useSimulatePlantyFactoryCreatePool =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     functionName: 'createPool',
   })
 
@@ -1884,10 +1772,7 @@ export const useSimulatePlantyFactoryCreatePool =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link plantyFactoryAbi}__
  */
 export const useWatchPlantyFactoryEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
-  })
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: plantyFactoryAbi })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link plantyFactoryAbi}__ and `eventName` set to `"PoolCreated"`
@@ -1895,7 +1780,6 @@ export const useWatchPlantyFactoryEvent =
 export const useWatchPlantyFactoryPoolCreatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyFactoryAbi,
-    address: plantyFactoryAddress,
     eventName: 'PoolCreated',
   })
 
@@ -1904,7 +1788,6 @@ export const useWatchPlantyFactoryPoolCreatedEvent =
  */
 export const useReadPlantyPool = /*#__PURE__*/ createUseReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
 })
 
 /**
@@ -1912,7 +1795,6 @@ export const useReadPlantyPool = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyPoolAssetToken = /*#__PURE__*/ createUseReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'assetToken',
 })
 
@@ -1921,7 +1803,6 @@ export const useReadPlantyPoolAssetToken = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyPoolDelta = /*#__PURE__*/ createUseReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'delta',
 })
 
@@ -1930,7 +1811,6 @@ export const useReadPlantyPoolDelta = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyPoolGetBuyInfo = /*#__PURE__*/ createUseReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'getBuyInfo',
 })
 
@@ -1938,11 +1818,7 @@ export const useReadPlantyPoolGetBuyInfo = /*#__PURE__*/ createUseReadContract({
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link plantyPoolAbi}__ and `functionName` set to `"getSellInfo"`
  */
 export const useReadPlantyPoolGetSellInfo = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: plantyPoolAbi,
-    address: plantyPoolAddress,
-    functionName: 'getSellInfo',
-  },
+  { abi: plantyPoolAbi, functionName: 'getSellInfo' },
 )
 
 /**
@@ -1951,7 +1827,6 @@ export const useReadPlantyPoolGetSellInfo = /*#__PURE__*/ createUseReadContract(
 export const useReadPlantyPoolIsPublicSaleActive =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'isPublicSaleActive',
   })
 
@@ -1960,7 +1835,6 @@ export const useReadPlantyPoolIsPublicSaleActive =
  */
 export const useReadPlantyPoolOwner = /*#__PURE__*/ createUseReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'owner',
 })
 
@@ -1970,7 +1844,6 @@ export const useReadPlantyPoolOwner = /*#__PURE__*/ createUseReadContract({
 export const useReadPlantyPoolProtocolFeeMultiplier =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'protocolFeeMultiplier',
   })
 
@@ -1980,7 +1853,6 @@ export const useReadPlantyPoolProtocolFeeMultiplier =
 export const useReadPlantyPoolPublicSaleEndTime =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'publicSaleEndTime',
   })
 
@@ -1990,7 +1862,6 @@ export const useReadPlantyPoolPublicSaleEndTime =
 export const useReadPlantyPoolPublicSalePrice =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'publicSalePrice',
   })
 
@@ -2000,7 +1871,6 @@ export const useReadPlantyPoolPublicSalePrice =
 export const useReadPlantyPoolReserveAsset =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'reserveAsset',
   })
 
@@ -2008,11 +1878,7 @@ export const useReadPlantyPoolReserveAsset =
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link plantyPoolAbi}__ and `functionName` set to `"reserveUSDC"`
  */
 export const useReadPlantyPoolReserveUsdc = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: plantyPoolAbi,
-    address: plantyPoolAddress,
-    functionName: 'reserveUSDC',
-  },
+  { abi: plantyPoolAbi, functionName: 'reserveUSDC' },
 )
 
 /**
@@ -2020,7 +1886,6 @@ export const useReadPlantyPoolReserveUsdc = /*#__PURE__*/ createUseReadContract(
  */
 export const useReadPlantyPoolSpotPrice = /*#__PURE__*/ createUseReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'spotPrice',
 })
 
@@ -2030,7 +1895,6 @@ export const useReadPlantyPoolSpotPrice = /*#__PURE__*/ createUseReadContract({
 export const useReadPlantyPoolTradeFeeMultiplier =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'tradeFeeMultiplier',
   })
 
@@ -2039,7 +1903,6 @@ export const useReadPlantyPoolTradeFeeMultiplier =
  */
 export const useReadPlantyPoolUsdcToken = /*#__PURE__*/ createUseReadContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'usdcToken',
 })
 
@@ -2048,7 +1911,6 @@ export const useReadPlantyPoolUsdcToken = /*#__PURE__*/ createUseReadContract({
  */
 export const useWritePlantyPool = /*#__PURE__*/ createUseWriteContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
 })
 
 /**
@@ -2057,7 +1919,6 @@ export const useWritePlantyPool = /*#__PURE__*/ createUseWriteContract({
 export const useWritePlantyPoolAddLiquidity =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'addLiquidity',
   })
 
@@ -2066,7 +1927,6 @@ export const useWritePlantyPoolAddLiquidity =
  */
 export const useWritePlantyPoolBuyAsset = /*#__PURE__*/ createUseWriteContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
   functionName: 'buyAsset',
 })
 
@@ -2076,7 +1936,6 @@ export const useWritePlantyPoolBuyAsset = /*#__PURE__*/ createUseWriteContract({
 export const useWritePlantyPoolBuyAssetDuringPublicSale =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'buyAssetDuringPublicSale',
   })
 
@@ -2086,7 +1945,6 @@ export const useWritePlantyPoolBuyAssetDuringPublicSale =
 export const useWritePlantyPoolConfigurePublicSale =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'configurePublicSale',
   })
 
@@ -2096,7 +1954,6 @@ export const useWritePlantyPoolConfigurePublicSale =
 export const useWritePlantyPoolRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -2104,7 +1961,7 @@ export const useWritePlantyPoolRenounceOwnership =
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link plantyPoolAbi}__ and `functionName` set to `"sellAsset"`
  */
 export const useWritePlantyPoolSellAsset = /*#__PURE__*/ createUseWriteContract(
-  { abi: plantyPoolAbi, address: plantyPoolAddress, functionName: 'sellAsset' },
+  { abi: plantyPoolAbi, functionName: 'sellAsset' },
 )
 
 /**
@@ -2113,7 +1970,6 @@ export const useWritePlantyPoolSellAsset = /*#__PURE__*/ createUseWriteContract(
 export const useWritePlantyPoolSellAssetDuringPublicSale =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'sellAssetDuringPublicSale',
   })
 
@@ -2123,7 +1979,6 @@ export const useWritePlantyPoolSellAssetDuringPublicSale =
 export const useWritePlantyPoolTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'transferOwnership',
   })
 
@@ -2132,7 +1987,6 @@ export const useWritePlantyPoolTransferOwnership =
  */
 export const useSimulatePlantyPool = /*#__PURE__*/ createUseSimulateContract({
   abi: plantyPoolAbi,
-  address: plantyPoolAddress,
 })
 
 /**
@@ -2141,7 +1995,6 @@ export const useSimulatePlantyPool = /*#__PURE__*/ createUseSimulateContract({
 export const useSimulatePlantyPoolAddLiquidity =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'addLiquidity',
   })
 
@@ -2151,7 +2004,6 @@ export const useSimulatePlantyPoolAddLiquidity =
 export const useSimulatePlantyPoolBuyAsset =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'buyAsset',
   })
 
@@ -2161,7 +2013,6 @@ export const useSimulatePlantyPoolBuyAsset =
 export const useSimulatePlantyPoolBuyAssetDuringPublicSale =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'buyAssetDuringPublicSale',
   })
 
@@ -2171,7 +2022,6 @@ export const useSimulatePlantyPoolBuyAssetDuringPublicSale =
 export const useSimulatePlantyPoolConfigurePublicSale =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'configurePublicSale',
   })
 
@@ -2181,7 +2031,6 @@ export const useSimulatePlantyPoolConfigurePublicSale =
 export const useSimulatePlantyPoolRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'renounceOwnership',
   })
 
@@ -2191,7 +2040,6 @@ export const useSimulatePlantyPoolRenounceOwnership =
 export const useSimulatePlantyPoolSellAsset =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'sellAsset',
   })
 
@@ -2201,7 +2049,6 @@ export const useSimulatePlantyPoolSellAsset =
 export const useSimulatePlantyPoolSellAssetDuringPublicSale =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'sellAssetDuringPublicSale',
   })
 
@@ -2211,7 +2058,6 @@ export const useSimulatePlantyPoolSellAssetDuringPublicSale =
 export const useSimulatePlantyPoolTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     functionName: 'transferOwnership',
   })
 
@@ -2219,10 +2065,7 @@ export const useSimulatePlantyPoolTransferOwnership =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link plantyPoolAbi}__
  */
 export const useWatchPlantyPoolEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: plantyPoolAbi,
-    address: plantyPoolAddress,
-  })
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: plantyPoolAbi })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link plantyPoolAbi}__ and `eventName` set to `"LiquidityAdded"`
@@ -2230,7 +2073,6 @@ export const useWatchPlantyPoolEvent =
 export const useWatchPlantyPoolLiquidityAddedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'LiquidityAdded',
   })
 
@@ -2240,7 +2082,6 @@ export const useWatchPlantyPoolLiquidityAddedEvent =
 export const useWatchPlantyPoolOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'OwnershipTransferred',
   })
 
@@ -2250,7 +2091,6 @@ export const useWatchPlantyPoolOwnershipTransferredEvent =
 export const useWatchPlantyPoolPublicSaleConfiguredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'PublicSaleConfigured',
   })
 
@@ -2260,7 +2100,6 @@ export const useWatchPlantyPoolPublicSaleConfiguredEvent =
 export const useWatchPlantyPoolPublicSalePurchaseEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'PublicSalePurchase',
   })
 
@@ -2270,7 +2109,6 @@ export const useWatchPlantyPoolPublicSalePurchaseEvent =
 export const useWatchPlantyPoolPublicSaleSellEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'PublicSaleSell',
   })
 
@@ -2280,7 +2118,6 @@ export const useWatchPlantyPoolPublicSaleSellEvent =
 export const useWatchPlantyPoolSwappedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyPoolAbi,
-    address: plantyPoolAddress,
     eventName: 'Swapped',
   })
 
@@ -2289,7 +2126,6 @@ export const useWatchPlantyPoolSwappedEvent =
  */
 export const useReadPlantyToken = /*#__PURE__*/ createUseReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
 })
 
 /**
@@ -2297,7 +2133,6 @@ export const useReadPlantyToken = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyTokenAllowance = /*#__PURE__*/ createUseReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'allowance',
 })
 
@@ -2306,7 +2141,6 @@ export const useReadPlantyTokenAllowance = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyTokenBalanceOf = /*#__PURE__*/ createUseReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'balanceOf',
 })
 
@@ -2315,7 +2149,6 @@ export const useReadPlantyTokenBalanceOf = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyTokenDecimals = /*#__PURE__*/ createUseReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'decimals',
 })
 
@@ -2324,7 +2157,6 @@ export const useReadPlantyTokenDecimals = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyTokenName = /*#__PURE__*/ createUseReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'name',
 })
 
@@ -2333,7 +2165,6 @@ export const useReadPlantyTokenName = /*#__PURE__*/ createUseReadContract({
  */
 export const useReadPlantyTokenSymbol = /*#__PURE__*/ createUseReadContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'symbol',
 })
 
@@ -2343,7 +2174,6 @@ export const useReadPlantyTokenSymbol = /*#__PURE__*/ createUseReadContract({
 export const useReadPlantyTokenTotalSupply =
   /*#__PURE__*/ createUseReadContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'totalSupply',
   })
 
@@ -2352,7 +2182,6 @@ export const useReadPlantyTokenTotalSupply =
  */
 export const useWritePlantyToken = /*#__PURE__*/ createUseWriteContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
 })
 
 /**
@@ -2360,7 +2189,6 @@ export const useWritePlantyToken = /*#__PURE__*/ createUseWriteContract({
  */
 export const useWritePlantyTokenApprove = /*#__PURE__*/ createUseWriteContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
   functionName: 'approve',
 })
 
@@ -2370,7 +2198,6 @@ export const useWritePlantyTokenApprove = /*#__PURE__*/ createUseWriteContract({
 export const useWritePlantyTokenDecreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -2380,7 +2207,6 @@ export const useWritePlantyTokenDecreaseAllowance =
 export const useWritePlantyTokenIncreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -2388,11 +2214,7 @@ export const useWritePlantyTokenIncreaseAllowance =
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link plantyTokenAbi}__ and `functionName` set to `"transfer"`
  */
 export const useWritePlantyTokenTransfer = /*#__PURE__*/ createUseWriteContract(
-  {
-    abi: plantyTokenAbi,
-    address: plantyTokenAddress,
-    functionName: 'transfer',
-  },
+  { abi: plantyTokenAbi, functionName: 'transfer' },
 )
 
 /**
@@ -2401,7 +2223,6 @@ export const useWritePlantyTokenTransfer = /*#__PURE__*/ createUseWriteContract(
 export const useWritePlantyTokenTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'transferFrom',
   })
 
@@ -2410,7 +2231,6 @@ export const useWritePlantyTokenTransferFrom =
  */
 export const useSimulatePlantyToken = /*#__PURE__*/ createUseSimulateContract({
   abi: plantyTokenAbi,
-  address: plantyTokenAddress,
 })
 
 /**
@@ -2419,7 +2239,6 @@ export const useSimulatePlantyToken = /*#__PURE__*/ createUseSimulateContract({
 export const useSimulatePlantyTokenApprove =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'approve',
   })
 
@@ -2429,7 +2248,6 @@ export const useSimulatePlantyTokenApprove =
 export const useSimulatePlantyTokenDecreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'decreaseAllowance',
   })
 
@@ -2439,7 +2257,6 @@ export const useSimulatePlantyTokenDecreaseAllowance =
 export const useSimulatePlantyTokenIncreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'increaseAllowance',
   })
 
@@ -2449,7 +2266,6 @@ export const useSimulatePlantyTokenIncreaseAllowance =
 export const useSimulatePlantyTokenTransfer =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'transfer',
   })
 
@@ -2459,7 +2275,6 @@ export const useSimulatePlantyTokenTransfer =
 export const useSimulatePlantyTokenTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     functionName: 'transferFrom',
   })
 
@@ -2467,10 +2282,7 @@ export const useSimulatePlantyTokenTransferFrom =
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link plantyTokenAbi}__
  */
 export const useWatchPlantyTokenEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: plantyTokenAbi,
-    address: plantyTokenAddress,
-  })
+  /*#__PURE__*/ createUseWatchContractEvent({ abi: plantyTokenAbi })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link plantyTokenAbi}__ and `eventName` set to `"Approval"`
@@ -2478,7 +2290,6 @@ export const useWatchPlantyTokenEvent =
 export const useWatchPlantyTokenApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     eventName: 'Approval',
   })
 
@@ -2488,6 +2299,5 @@ export const useWatchPlantyTokenApprovalEvent =
 export const useWatchPlantyTokenTransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: plantyTokenAbi,
-    address: plantyTokenAddress,
     eventName: 'Transfer',
   })
