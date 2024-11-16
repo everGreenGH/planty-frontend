@@ -46,7 +46,7 @@ const colors: {
   light: {
     buttonColor: {
       primary:
-        "bg-brand-primary hover:bg-brand-primary/80 disabled:bg-gray-200 border border-brand-primary hover:border-brand-primary/80 disabled:border-gray-150",
+        "bg-brand-primary hover:bg-brand-primary/80 disabled:bg-gray-200 border border-brand-primary hover:border-brand-primary/80 disabled:border-gray-200",
       secondary:
         "border-solid border border-brand-primary hover:bg-gray-200 disabled:border-gray-150 disabled:bg-transparent",
       assertive:
@@ -108,7 +108,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         textColor[variant],
         !iconOnly && !!leadingIcon && (size === "large" ? "pl-3" : "pl-1"),
         !iconOnly && !!trailingIcon && (size === "large" ? "pr-3" : "pr-1"),
-        variant === "nonOutlined" && selected && "text-brand-primary",
+        variant === "nonOutlined" && selected && "bg-gray-200 text-brand-primary",
         iconOnly && (size === "large" ? "!px-2 !py-2" : "!px-1 !py-1"),
         className,
       )}

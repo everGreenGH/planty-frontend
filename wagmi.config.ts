@@ -1,27 +1,32 @@
 import { ContractConfig, defineConfig } from "@wagmi/cli";
-import { react } from "@wagmi/cli/plugins";
-import { plantyFactoryABI, plantyPoolABI, plantyTokenABI } from "./src/contract";
+import { actions, react } from "@wagmi/cli/plugins";
+import { PLANTY_FACTORY_ADDRESS, PLANTY_TOKEN_ADDRESS } from "~/utils/constants";
+import { erc20ABI, plantyFactoryABI, plantyPoolABI, plantyTokenABI } from "./src/contract";
 
 const contracts: ContractConfig[] = [
   {
     name: "PlantyFactory",
     abi: plantyFactoryABI,
-    address: "0x39374E9E734114672D41DE9c9a4E7eBf877c08AA",
+    address: PLANTY_FACTORY_ADDRESS,
   },
   {
     name: "PlantyToken",
     abi: plantyTokenABI,
-    address: "0xFa509737CC5FAcdc4AdecB0A94A579118fCbc97E",
+    address: PLANTY_TOKEN_ADDRESS,
   },
   {
     name: "PlantyPool",
     abi: plantyPoolABI,
-    address: "0xA72A5A09C980a376a26bB13f0f1c0a2b6611A2C7",
+    address: "0x8a17fe5FEdDD013A542E6C1364278fe277347Fbd",
+  },
+  {
+    name: "ERC20",
+    abi: erc20ABI,
   },
 ];
 
 export default defineConfig({
   out: "src/generated.ts",
   contracts,
-  plugins: [react()],
+  plugins: [actions(), react()],
 });

@@ -40,7 +40,7 @@ export const Tab = ({ tabs }: TabProps) => {
   };
 
   return (
-    <div className="flex w-[400px] items-center rounded-lg bg-gray-200 p-1">
+    <div className="flex w-full items-center rounded-lg bg-gray-200 p-1">
       {tabs.map((tab, index) => (
         <TabElement
           key={tab.name}
