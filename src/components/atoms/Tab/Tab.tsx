@@ -14,7 +14,7 @@ export const TabElement = ({
     <button
       type="button"
       className={clsx(
-        "flex h-7 flex-1 items-center justify-center rounded text-14/button/m transition-all duration-300",
+        "flex h-7 flex-1 items-center justify-center rounded text-14/subtle transition-all duration-300",
         active ? "bg-gray-100 text-gray-950" : "text-gray-400 hover:text-gray-950",
       )}
       onClick={handleClick}

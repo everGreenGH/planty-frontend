@@ -5,11 +5,76 @@ import type { UIProps } from "../../UIProps";
 export type ButtonProps = UIProps.Button & {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-  // theme?: "light" | "dark";
-  // variant?: "primary" | "secondary" | "assertive" | "nonOutlined";
+  theme?: "light" | "dark";
+  variant?: "primary" | "secondary" | "assertive" | "nonOutlined";
   iconOnly?: boolean;
   size?: "large" | "small";
+  align?: "left" | "center" | "right";
   selected?: boolean;
+};
+
+const buttonLayoutCommon =
+  "group inline-flex items-center whitespace-nowrap rounded-md disabled:cursor-not-allowed transition-all duration-300";
+
+const buttonAlign = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end",
+};
+
+// ------ Size ------ //
+
+const buttonLayout = {
+  large: "text-16/body/l h-10 px-4 gap-1.5",
+  small: "text-14/button/m h-7 px-2 gap-1",
+};
+
+const buttonTypography = {
+  large: "text-16/button/l",
+  small: "text-14/button/m",
+};
+
+// ------ Theme ------ //
+
+const colors: {
+  [theme: string]: {
+    [content: string]: {
+      [key in NonNullable<ButtonProps["variant"]>]: string;
+    };
+  };
+} = {
+  light: {
+    buttonColor: {
+      primary:
+        "bg-brand-primary hover:bg-brand-primary/80 disabled:bg-gray-200 border border-brand-primary hover:border-brand-primary/80 disabled:border-gray-150",
+      secondary:
+        "border-solid border border-brand-primary hover:bg-gray-200 disabled:border-gray-150 disabled:bg-transparent",
+      assertive:
+        "border-solid border border-gray-200 hover:bg-gray-200 disabled:border-gray-150 disabled:bg-transparent",
+      nonOutlined: "hover:bg-gray-200 disabled:bg-transparent",
+    },
+    textColor: {
+      primary: "text-gray-100 disabled:text-gray-400",
+      secondary: "text-brand-primary disabled:text-gray-400",
+      assertive: "text-black disabled:text-gray-400",
+      nonOutlined: "text-gray-600 disabled:text-gray-400 active:text-brand-primary",
+    },
+  },
+  dark: {
+    // dummy data
+    buttonColor: {
+      primary: "bg-brand-primary hover:bg- disabled:bg-gray-200",
+      secondary: "border-solid border border-brand-primary hover:bg-gray-200 disabled:border-gray-150",
+      assertive: "border-solid border border-gray-200 hover:bg-gray-200 disabled:border-gray-150",
+      nonOutlined: "hover:bg-gray-200",
+    },
+    textColor: {
+      primary: "text-gray-100 disabled:text-gray-400",
+      secondary: "text-brand-primary disabled:text-gray-400",
+      assertive: "text-black disabled:text-gray-400",
+      nonOutlined: "text-gray-600 disabled:text-gray-400 active:text-brand-primary",
+    },
+  },
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -19,22 +84,32 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     children,
     leadingIcon,
     trailingIcon,
-    // theme = "light",
-    // variant = "primary",
+    theme = "light",
+    variant = "primary",
     iconOnly = false,
     size = "large",
+    align = "center",
     selected = false,
     ...props
   },
   ref,
 ) {
+  const { buttonColor, textColor } = colors[theme];
   return (
     <button
       ref={ref}
       type={type === "button" ? "button" : "submit"}
       className={clsx(
-        "flex h-[50px] w-[592px] items-center justify-center gap-2.5 p-2 px-4",
-        "bg-brand-primary rounded-md text-theme-white",
+        buttonLayoutCommon,
+        buttonLayout[size],
+        buttonTypography[size],
+        buttonColor[variant],
+        buttonAlign[align],
+        textColor[variant],
+        !iconOnly && !!leadingIcon && (size === "large" ? "pl-3" : "pl-1"),
+        !iconOnly && !!trailingIcon && (size === "large" ? "pr-3" : "pr-1"),
+        variant === "nonOutlined" && selected && "text-brand-primary",
+        iconOnly && (size === "large" ? "!px-2 !py-2" : "!px-1 !py-1"),
         className,
       )}
       {...props}
@@ -45,5 +120,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     </button>
   );
 });
-
-export default Button;

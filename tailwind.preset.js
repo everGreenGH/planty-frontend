@@ -50,6 +50,7 @@ module.exports = {
       "16/blockquote": ["16px", { fontWeight: 400, lineHeight: "150%", fontStyle: "italic" }],
       "20/lead": ["20px", { fontWeight: 400, lineHeight: "140%" }],
       "18/large": ["18px", { fontWeight: 600, lineHeight: "150%" }],
+      "16/medium-bold": ["16px", { fontWeight: 600, lineHeight: "150%" }],
       "14/small": ["14px", { fontWeight: 500, lineHeight: "100%" }],
       "14/subtle": ["14px", { fontWeight: 400, lineHeight: "140%" }],
     },

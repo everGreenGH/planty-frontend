@@ -31,8 +31,8 @@ const getDefaultValue = (
 };
 
 const fieldCommon = clsx(
-  "flex h-[38px] px-3 py-2 gap-2.5 items-center justify-between self-stretch rounded-md border border-transparent transition-all duration-300",
-  "border-gray-300 focus-within:border-theme-primary focus-within:bg-theme-white",
+  "flex h-[38px] px-3 py-2 gap-2.5 items-center justify-between self-stretch rounded-md border transition-all duration-300",
+  "border-gray-300 focus-within:border-theme-primary",
 );
 const inputCommon =
   "text-14/subtle peer w-full self-stretch overflow-ellipsis bg-transparent focus:outline-none text-gray-950 placeholder:text-gray-400 disabled:text-gray-400";
