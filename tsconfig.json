@@ -14,8 +14,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "paths": {
-      "@planty/contract": ["./contract/typechain-types/index.ts"],
+      "@planty/contract": ["./planty-contract/typechain-types/index.ts"],
       "~/public/*": ["./public/*"],
       "~/*": ["./src/*"]
     }

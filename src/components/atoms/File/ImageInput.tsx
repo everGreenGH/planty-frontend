@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { UIProps } from "../../UIProps";
-import Button from "../Button/Button";
+import { Button } from "../Button/Button";
 import { Icon20 } from "../Icon/Icon20";
 import { Icon40 } from "../Icon/Icon40";
 import { Label } from "../Label/Label";
@@ -82,7 +82,7 @@ export const ImageInput = ({ value, label, error, onChange, className, ...props 
         <div
           className={clsx(
             "flex w-full flex-col items-center justify-center gap-2.5 rounded-md px-5 py-6",
-            dragging ? "border border-blue-600 bg-blue-100" : "border border-gray-200 bg-gray-100",
+            dragging ? "border border-brand-primary bg-green-200" : "border border-gray-200 bg-gray-100",
           )}
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
@@ -99,10 +99,10 @@ export const ImageInput = ({ value, label, error, onChange, className, ...props 
             {...props}
           />
           <div className="flex flex-col items-center justify-center gap-3">
-            <Icon40.FileUpload />
+            <Icon40.FileUpload className="text-brand-primary" />
             <div className="flex flex-col items-center justify-center gap-1">
               <p className="text-16/body/l text-gray-950">Drop your file here, or browse</p>
-              <p className="text-14/body/m text-blue-600">Please upload a PNG or JPG file under 4MB.</p>
+              <p className="text-14/body/m text-brand-primary">Please upload a PNG or JPG file under 4MB.</p>
             </div>
             <Button onClick={() => document.getElementById(inputId)?.click()}>Browse</Button>
           </div>
@@ -111,7 +111,7 @@ export const ImageInput = ({ value, label, error, onChange, className, ...props 
         <div className="flex w-full items-center gap-2.5 rounded-md border border-gray-200 bg-gray-100 px-5 py-4">
           <div className="flex flex-1 items-center gap-4">
             <Image src={value} alt={value} width={32} height={32} />
-            <p className="text-16/body/l/emp text-gray-950">{shortenedName}</p>
+            <p className="text-16/p text-gray-950">{shortenedName}</p>
           </div>
           <button type="button" className="p-1" onClick={() => onChange("")}>
             <Icon20.Close />

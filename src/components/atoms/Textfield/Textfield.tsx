@@ -8,6 +8,7 @@ export interface InputProps extends UIProps.Input {
   id?: string;
   type?: "text" | "number" | "password" | "email" | "tel" | "phone" | "search";
   label?: string;
+  labelDirection?: "row" | "column";
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   placeholder?: string;
@@ -31,8 +32,8 @@ const getDefaultValue = (
 };
 
 const fieldCommon = clsx(
-  "flex h-[38px] px-3 py-2 gap-2.5 items-center justify-between self-stretch rounded-md border border-transparent transition-all duration-300",
-  "border-gray-300 focus-within:border-theme-primary focus-within:bg-theme-white",
+  "flex h-[38px] px-3 py-2 gap-2.5 items-center justify-between self-stretch rounded-md border transition-all duration-300",
+  "border-gray-300 focus-within:border-theme-primary",
 );
 const inputCommon =
   "text-14/subtle peer w-full self-stretch overflow-ellipsis bg-transparent focus:outline-none text-gray-950 placeholder:text-gray-400 disabled:text-gray-400";
@@ -42,12 +43,11 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(function Textf
     id,
     type = "text",
     label,
+    labelDirection = "column",
     leadingIcon,
     trailingIcon,
     placeholder,
     isClearable = false,
-    value,
-    defaultValue,
     children,
     disabled = false,
     required,
@@ -55,6 +55,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(function Textf
     onChange,
     onClear,
     className,
+    value,
     ...props
   },
   ref,
@@ -62,25 +63,17 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(function Textf
   const localId = `planty-${useId()}`;
   const inputId = id || localId;
 
-  const [internalValue, setInternalValue] = useState(getDefaultValue(type, value, defaultValue));
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInternalValue(e.target.value);
     onChange?.(e);
   };
 
   const handleClear = () => {
-    setInternalValue("");
     onClear?.();
+    onChange?.({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>);
   };
 
-  useEffect(() => {
-    if (value === undefined) return;
-    setInternalValue(value);
-  }, [value]);
-
   return (
-    <div className={clsx("flex flex-col items-start gap-4", className)}>
+    <div className={clsx("flex items-start gap-4", labelDirection === "column" ? "flex-col" : "", className)}>
       {label && <Label htmlFor={localId} label={label} required={required} error={error} />}
       {!!leadingIcon && leadingIcon}
       <div className={clsx(fieldCommon, disabled && "bg-gray-150")}>
@@ -91,7 +84,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(function Textf
           placeholder={placeholder}
           required={required}
           type={type}
-          value={internalValue}
+          value={value}
           onChange={handleChange}
           className={inputCommon}
           {...props}
@@ -100,7 +93,7 @@ export const Textfield = forwardRef<HTMLInputElement, InputProps>(function Textf
           <Icon20.Close
             className={clsx(
               "text-gray-200 opacity-0 transition-all duration-300 hover:cursor-pointer hover:text-gray-300",
-              internalValue.toString().length > 0 && "peer-focus:opacity-100",
+              value && value.toString().length > 0 && "peer-focus:opacity-100",
             )}
             onClick={handleClear}
           />
