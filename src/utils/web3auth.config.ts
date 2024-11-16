@@ -2,17 +2,32 @@ import { CHAIN_NAMESPACES, IAdapter, WEB3AUTH_NETWORK } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 import { Web3Auth, Web3AuthOptions } from "@web3auth/modal";
-import { flowTestnet } from "viem/chains";
-import { NEXT_PUBLIC_FLOW_TESTNET_CHAIN_ID } from "./constants";
+import { flowTestnet, morphHolesky, rootstockTestnet } from "viem/chains";
+import { CHAIN_ID } from "./constants";
+import { NetworkType } from "./network";
+
+const network: NetworkType = process.env.NEXT_PUBLIC_NETWORK_NAME as NetworkType;
+
+const chain = {
+  flow: flowTestnet,
+  rootstock: rootstockTestnet,
+  morph: morphHolesky,
+};
+
+const tickerName = {
+  flow: "FLOW",
+  rootstock: "BTC",
+  morph: "ETH",
+};
 
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: NEXT_PUBLIC_FLOW_TESTNET_CHAIN_ID,
-  rpcTarget: flowTestnet.rpcUrls.default.http[0],
-  displayName: flowTestnet.name,
-  blockExplorerUrl: flowTestnet.blockExplorers.default.url,
-  ticker: flowTestnet.nativeCurrency.symbol,
-  tickerName: "FLOW",
+  chainId: CHAIN_ID[network].toString(),
+  rpcTarget: chain[network].rpcUrls.default.http[0],
+  displayName: chain[network].name,
+  blockExplorerUrl: chain[network].blockExplorers.default.url,
+  ticker: chain[network].nativeCurrency.symbol,
+  tickerName: tickerName[network],
 };
 
 const privateKeyProvider = new EthereumPrivateKeyProvider({

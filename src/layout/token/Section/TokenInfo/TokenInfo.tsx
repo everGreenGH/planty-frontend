@@ -15,7 +15,7 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
   const [tab, setTab] = useState<"chart" | "plantInfo">("plantInfo");
 
   const { data: publicSaleEndTime } = useReadPlantyPoolPublicSaleEndTime();
-  const isPublicSaleActive = publicSaleEndTime && Number(publicSaleEndTime) < dayjs().unix();
+  const isPublicSaleActive = publicSaleEndTime && Number(publicSaleEndTime) > dayjs().unix();
   const { data: rawSpotPrice } = useReadPlantyPoolSpotPrice();
 
   const [leftTime, setLeftTime] = useState(0);

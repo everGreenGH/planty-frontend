@@ -17,6 +17,7 @@ import { usePublicSaleTrade } from "~/hooks/usePublicSaleTrade";
 import { useTrade } from "~/hooks/useTrade";
 import { USDC_ADDRESS } from "~/utils/constants";
 import { formatBigInt } from "~/utils/formatter";
+import { NetworkType } from "~/utils/network";
 import { useReadErc20BalanceOf } from "../../../../../generated";
 
 export interface OrderFormInput {
@@ -33,6 +34,7 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
   const [isBuy, setIsBuy] = useState(true);
   const { approve, isLoading: isApproveLoading, isSuccess: isApproveSuccess } = useApprove();
   const { address: account } = useAccount();
+  const network: NetworkType = process.env.NEXT_PUBLIC_NETWORK_NAME as NetworkType;
 
   const methods = useForm<OrderFormInput>({ mode: "onChange", shouldFocusError: true });
   const {
@@ -46,7 +48,7 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
 
   /* Read Info */
   const { data: balance, isLoading: balanceLoading } = useReadErc20BalanceOf({
-    address: USDC_ADDRESS,
+    address: USDC_ADDRESS[network] as Address,
     args: [account as Address],
   });
   const { data: buyInfo, isLoading: buyInfoLoading } = useReadPlantyPoolGetBuyInfo({
@@ -60,7 +62,7 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
   const formattedTradeFee = tradeFee ? formatBigInt(tradeFee) : "0.0000";
 
   const fetchedNeedAllowance = useNeedApprove(
-    isBuy ? USDC_ADDRESS : plantyTokenAddress,
+    isBuy ? USDC_ADDRESS[network] : plantyTokenAddress,
     plantyPoolAddress,
     isBuy ? Number(usdcNeeded ?? 0) / 1e18 : Number(amount ?? 0) / 1e18,
   );
@@ -85,7 +87,7 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
   const onValid = async () => {
     if (needApprove) {
       await approve(
-        isBuy ? USDC_ADDRESS : plantyTokenAddress,
+        isBuy ? USDC_ADDRESS[network] : plantyTokenAddress,
         plantyPoolAddress,
         isBuy ? Number(usdcNeeded) / 1e18 : Number(amount) / 1e18,
       );
@@ -215,7 +217,7 @@ export const OrderForm = ({ plantyTokenAddress, plantyPoolAddress, isPublicSaleA
           </div>
         </div>
 
-        <Button type="submit" size="large" className="mt-1 w-full" disabled={isLoading}>
+        <Button type="submit" size="large" className="z-10 mt-1 w-full" disabled={isLoading}>
           {needApprove ? "Approve Token" : isBuy ? "Buy" : "Sell"}
         </Button>
       </form>

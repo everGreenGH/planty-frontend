@@ -1,7 +1,8 @@
 import { IAdapter, IProvider } from "@web3auth/base";
 import { getDefaultExternalAdapters } from "@web3auth/default-evm-adapter";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { NEXT_PUBLIC_FLOW_TESTNET_CHAIN_ID } from "~/utils/constants";
+import { CHAIN_ID } from "~/utils/constants";
+import { NetworkType } from "~/utils/network";
 import { web3AuthOptions, web3auth } from "~/utils/web3auth.config";
 
 type Web3AuthContextType = {
@@ -16,6 +17,7 @@ const Web3AuthContext = createContext<Web3AuthContextType>(undefined as unknown 
 const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const network: NetworkType = process.env.NEXT_PUBLIC_NETWORK_NAME as NetworkType;
 
   const login = useCallback(async () => {
     try {
@@ -39,24 +41,24 @@ const Web3AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  const getUserName = async () => {
+  const getUserName = useCallback(async () => {
     if (!web3auth.connected) return undefined;
     const user = await web3auth.getUserInfo();
     if (user.name) return user.name;
     return undefined;
-  };
+  }, []);
 
   useEffect(() => {
     const changeNetwork = async () => {
       if (!provider) return;
-      const network = await provider.chainId;
-      const flowTestnetId = NEXT_PUBLIC_FLOW_TESTNET_CHAIN_ID;
-      if (network !== flowTestnetId) {
-        await web3auth.switchChain({ chainId: flowTestnetId });
+      const providerNetwork = await provider.chainId;
+      const chainId = CHAIN_ID[network].toString();
+      if (providerNetwork !== chainId) {
+        await web3auth.switchChain({ chainId });
       }
     };
     changeNetwork();
-  }, [provider]);
+  }, [provider, network]);
 
   useEffect(() => {
     const web3AuthInit = async () => {
