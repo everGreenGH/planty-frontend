@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Button } from "~/components/atoms/Button/Button";
+import { useModalContext } from "~/contexts/ModalProvider";
 import { useReadPlantyPoolPublicSaleEndTime, useReadPlantyPoolSpotPrice, useReadPlantyTokenName } from "~/generated";
 import PengtoshiProfile from "~/public/pengtoshi_test_profile.png";
 import PlantImage from "~/public/plant.png";
@@ -11,9 +12,11 @@ import { formatBigInt, formatLeftTimestamp } from "~/utils/formatter";
 import { getLocalStorage, setLocalStorage } from "~/utils/local-storage";
 import { OrderForm } from "./OrderForm/OrderForm";
 import { PriceChart } from "./PriceChart/PriceChart";
+import { TokenValueModal } from "../../Modal/TokenValueModal/TokenValueModal";
 
 export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; tokenAddress: string }) => {
   const [tab, setTab] = useState<"chart" | "plantInfo">("chart");
+  const { openModal } = useModalContext();
 
   const { data: tokenName } = useReadPlantyTokenName();
   const { data: publicSaleEndTime } = useReadPlantyPoolPublicSaleEndTime();
@@ -137,6 +140,12 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
                 <div className="flex justify-between gap-2">
                   <span className="text-14/medium text-gray-500">Last Update</span>
                   <span className="text-14/large text-black">2024.11.17 04:24</span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span className="text-14/medium text-gray-500">Plant Value (estimated)</span>
+                  <Button variant="secondary" size="small" onClick={() => openModal(<TokenValueModal />)}>
+                    View
+                  </Button>
                 </div>
               </div>
             </div>

@@ -72,19 +72,16 @@ export const Sidebar = () => {
             align="left"
             leadingIcon={<BriefcaseBusiness className="h-5 w-5" />}
             variant="nonOutlined"
-            onClick={() => push("/partnership")}
+            onClick={() => push("/portfolio")}
           >
             Portfolio
           </Button>
           <Button
-            className={clsx(
-              "w-full",
-              pathname === "/partnership" ? "!bg-brand-primary text-theme-white" : "text-gray-600",
-            )}
+            className={clsx("w-full", pathname === "/setting" ? "!bg-brand-primary text-theme-white" : "text-gray-600")}
             align="left"
             leadingIcon={<Settings className="h-5 w-5" />}
             variant="nonOutlined"
-            onClick={() => push("/partnership")}
+            onClick={() => push("/setting")}
           >
             Settings
           </Button>
