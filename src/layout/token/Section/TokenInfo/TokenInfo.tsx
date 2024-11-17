@@ -2,13 +2,16 @@ import clsx from "clsx";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { Button } from "~/components/atoms/Button/Button";
 import { useModalContext } from "~/contexts/ModalProvider";
 import { useReadPlantyPoolPublicSaleEndTime, useReadPlantyPoolSpotPrice, useReadPlantyTokenName } from "~/generated";
+import { useLitSessionSignature } from "~/hooks/useLitSessionSignature";
 import PengtoshiProfile from "~/public/pengtoshi_test_profile.png";
 import PlantImage from "~/public/plant.png";
 import TokenTable from "~/public/token_table.svg";
 import { formatBigInt, formatLeftTimestamp } from "~/utils/formatter";
+import { litNodeClient } from "~/utils/lit-action.config";
 import { getLocalStorage, setLocalStorage } from "~/utils/local-storage";
 import { OrderForm } from "./OrderForm/OrderForm";
 import { PriceChart } from "./PriceChart/PriceChart";
@@ -25,6 +28,29 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
 
   const [leftTime, setLeftTime] = useState(0);
   const spotPrice = rawSpotPrice ? formatBigInt(rawSpotPrice) : undefined;
+
+  const litActionCode = `const calculateSpotPrice = () => {
+    const spotPriceNumber = Number(rawSpotPrice) / 1e18;
+    LitActions.setResponse({ response: \`spotPriceNumber: \${spotPriceNumber}\` });
+  };
+  calculateSpotPrice();`;
+
+  const updateChartDataWithLit = async () => {
+    try {
+      const sessionSignatures = await useLitSessionSignature();
+      await litNodeClient.executeJs({
+        sessionSigs: sessionSignatures,
+        code: litActionCode,
+        jsParams: {
+          rawSpotPrice,
+        },
+      });
+      // Error Seen: There was an error getting the signing shares from the nodes
+      toast.success("Update chart data with Lit");
+    } catch (error) {
+      toast.error("Failed to update chart data with Lit");
+    }
+  };
 
   useEffect(() => {
     if (publicSaleEndTime) {
@@ -102,7 +128,7 @@ export const TokenInfo = ({ poolAddress, tokenAddress }: { poolAddress: string; 
         {tab === "chart" && (
           <div className="col-span-3 flex flex-col gap-4 rounded-3xl bg-theme-white p-6">
             <span className="text-16/medium-bold text-black">Chart</span>
-            <PriceChart />
+            <PriceChart updateChartDataWithLit={updateChartDataWithLit} spotPrice={Number(spotPrice ?? 0) / 1e18} />
           </div>
         )}
         {/* Plant Info */}

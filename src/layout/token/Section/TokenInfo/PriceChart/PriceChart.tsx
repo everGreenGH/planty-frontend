@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { CrosshairMode, Time, createChart } from "lightweight-charts";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { UIProps } from "~/components/UIProps";
+import { Button } from "~/components/atoms/Button/Button";
 import { getLocalStorage } from "~/utils/local-storage";
 
 export interface PriceData {
@@ -9,8 +10,12 @@ export interface PriceData {
   timestamp: Time;
 }
 
-export const PriceChart = ({ className }: UIProps.Div) => {
-  const [pointedPrice, setPointedPrice] = useState<number>(0);
+export const PriceChart = ({
+  updateChartDataWithLit,
+  spotPrice,
+  className,
+}: UIProps.Div & { updateChartDataWithLit: () => void; spotPrice: number }) => {
+  const [pointedPrice, setPointedPrice] = useState<number>(spotPrice);
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [chartInternal, setChartInternal] = useState<any>();
@@ -153,8 +158,11 @@ export const PriceChart = ({ className }: UIProps.Div) => {
       <div className="absolute top-4 z-10 flex w-full items-start justify-between pr-6">
         {/* Price */}
         <div className="flex flex-col items-start gap-2">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <span className="text-16/medium-bold text-gray-950">Price: ${pointedPrice}</span>
+            <Button variant="secondary" size="small" onClick={updateChartDataWithLit}>
+              Update with Lit
+            </Button>
           </div>
         </div>
       </div>

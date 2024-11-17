@@ -10,6 +10,6 @@ export const litNodeClient = new LitNodeClient({
 litNodeClient.connect();
 
 export const ethersWallet = new ethers.Wallet(
-  process.env.ETHEREUM_PRIVATE_KEY as string,
+  "0x68ac28ca31361f4978b2d45b2dd8378d2845ee8d9afce4c7a068bdd2f7fb7113" as string,
   new ethers.providers.JsonRpcProvider(LIT_RPC.CHRONICLE_YELLOWSTONE),
 );
